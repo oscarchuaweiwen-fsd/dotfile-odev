@@ -11,9 +11,13 @@ saga.setup({
 	finder_action_keys = {
 		open = "<CR>",
 	},
+	definition = {
+		keys = {
+			tabe = "<Enter>",
+		},
+	},
 	-- use enter to open file with definition preview
 	definition_action_keys = {
 		edit = "<CR>",
 	},
 })
-

@@ -1,3 +1,4 @@
+local K = {}
 -- import lspconfig plugin safely
 local lspconfig_status, lspconfig = pcall(require, "lspconfig")
 if not lspconfig_status then
@@ -13,6 +14,12 @@ end
 -- import cmp-nvim-lsp plugin safely
 local lsp_signature_status, lsp_signature = pcall(require, "lsp_signature")
 if not cmp_nvim_lsp_status then
+	return
+end
+
+-- import typescript plugin safely
+local typescript_setup, typescript = pcall(require, "typescript")
+if not typescript_setup then
 	return
 end
 
@@ -51,13 +58,29 @@ for type, icon in pairs(signs) do
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
 
+-- lspconfig["jdtls"].setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- })
 
 lspconfig["rust_analyzer"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach,
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 
 lspconfig["gopls"].setup({
-  capabilities = capabilities,
-  on_attach = on_attach
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
+
+-- configure typescript server with plugin
+typescript.setup({
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	},
+})
+
+K.remap = on_attach
+
+return K

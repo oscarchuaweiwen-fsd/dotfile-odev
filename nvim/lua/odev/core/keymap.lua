@@ -1,12 +1,12 @@
+local P = {}
+keymaps = P
 -- global key mapper leader
 vim.g.mapleader = " "
 
 -- make it precise
-local keymap = vim.keymap
-
--- common key bind
+local keymap = vim.keymap -- common key bind
 -- terminal command
-keymap.set("n","<leader>pv",vim.cmd.Ex) -- trigger terminal explorer
+keymap.set("n", "<leader>pv", vim.cmd.Ex) -- trigger terminal explorer
 
 -- use jk to exit insert mode
 keymap.set("i", "jk", "<ESC>")
@@ -15,9 +15,7 @@ keymap.set("i", "jk", "<ESC>")
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 -- delete single character without copying into register
-keymap.set("n", "x", '"_x')
-
--- go to end/start of the line
+keymap.set("n", "x", '"_x') -- go to end/start of the line
 keymap.set("n", "gts", "0")
 keymap.set("n", "gte", "%")
 
@@ -38,15 +36,15 @@ keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 -- plugin key bind
 
 -- nvim telescope
-local builtin_status, builtin = pcall(require,"telescope.builtin")
+local builtin_status, builtin = pcall(require, "telescope.builtin")
 if not builtin_status then
-return 
+	return
 end
 
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
 keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>") -- find string in current working directory as you type
 keymap.set("n", "<leader>fc", function()
-	builtin.grep_string({ search = vim.fn.input("Grep >")});
+	builtin.grep_string({ search = vim.fn.input("Grep >") })
 end) -- find string under cursor in current working directory
 keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>") -- list open buffers in current neovim instance
 keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available help tags
@@ -55,9 +53,12 @@ keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>") -- list available 
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
 -- float term
-keymap.set('n', "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ")
-keymap.set('n', "t", ":FloatermToggle myfloat<CR>")
-keymap.set('t', "<Esc>", "<C-\\><C-n>:q<CR>")
+keymap.set("n", "<leader>ft", ":FloatermNew --name=myfloat --height=0.8 --width=0.7 --autoclose=2 fish <CR> ")
+keymap.set("n", "t", ":FloatermToggle myfloat<CR>")
+keymap.set("t", "<Esc>", "<C-\\><C-n>:q<CR>")
+
+-- git
+keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 -- dap
 keymap.set("n", "<leader>db", ":lua require'dap'.toggle_breakpoint()<cr>")
@@ -69,3 +70,11 @@ keymap.set("n", "<leader>dc", ":lua require'dap'.disconnect({ terminateDebuggee 
 -- dapui
 keymap.set("n", "<leader>duio", ":lua require'dapui'.open()<cr>")
 keymap.set("n", "<leader>duic", ":lua require'dapui'.close()<cr>")
+
+-- Java
+function P.map_java_keys(bufnr)
+	keymap.set("n", "<leader>oi", ':lua require("jdtls").organize_imports()<CR>')
+	keymap.set("n", "<leader>jc", ':lua require("jdtls).compile("incremental")')
+end
+
+return P
