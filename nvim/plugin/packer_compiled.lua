@@ -124,6 +124,11 @@ _G.packer_plugins = {
     path = "/Users/odev/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  gruvbox = {
+    loaded = true,
+    path = "/Users/odev/.local/share/nvim/site/pack/packer/start/gruvbox",
+    url = "https://github.com/morhetz/gruvbox"
+  },
   ["kanagawa.nvim"] = {
     loaded = true,
     path = "/Users/odev/.local/share/nvim/site/pack/packer/start/kanagawa.nvim",
@@ -247,6 +252,15 @@ _G.packer_plugins = {
     path = "/Users/odev/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["tabout.nvim"] = {
+    config = { "\27LJ\2\n•\3\0\0\5\0\f\0\0236\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\a\0005\4\4\0>\4\1\0035\4\5\0>\4\2\0035\4\6\0>\4\3\0035\4\a\0>\4\4\0035\4\b\0>\4\5\0035\4\t\0>\4\6\3=\3\n\0024\3\0\0=\3\v\2B\0\2\1K\0\1\0\fexclude\ftabouts\1\0\2\topen\6{\nclose\6}\1\0\2\topen\6[\nclose\6]\1\0\2\topen\6(\nclose\6)\1\0\2\topen\6`\nclose\6`\1\0\2\topen\6\"\nclose\6\"\1\0\2\topen\6'\nclose\6'\1\0\t\15act_as_tab\2\21act_as_shift_tab\1\21enable_backwards\2\vtabkey\n<Tab>\15completion\2\21backwards_tabkey\f<S-Tab>\16default_tab\n<C-t>\21ignore_beginning\2\22default_shift_tab\n<C-d>\nsetup\vtabout\frequire\0" },
+    load_after = {},
+    loaded = true,
+    needs_bufread = false,
+    path = "/Users/odev/.local/share/nvim/site/pack/packer/opt/tabout.nvim",
+    url = "https://github.com/abecodes/tabout.nvim",
+    wants = { "nvim-treesitter" }
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/odev/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -283,6 +297,12 @@ time([[Config for nvim-autopairs]], false)
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]
 vim.cmd [[ packadd nvim-ts-autotag ]]
+vim.cmd [[ packadd nvim-cmp ]]
+vim.cmd [[ packadd tabout.nvim ]]
+
+-- Config for: tabout.nvim
+try_loadstring("\27LJ\2\n•\3\0\0\5\0\f\0\0236\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0004\3\a\0005\4\4\0>\4\1\0035\4\5\0>\4\2\0035\4\6\0>\4\3\0035\4\a\0>\4\4\0035\4\b\0>\4\5\0035\4\t\0>\4\6\3=\3\n\0024\3\0\0=\3\v\2B\0\2\1K\0\1\0\fexclude\ftabouts\1\0\2\topen\6{\nclose\6}\1\0\2\topen\6[\nclose\6]\1\0\2\topen\6(\nclose\6)\1\0\2\topen\6`\nclose\6`\1\0\2\topen\6\"\nclose\6\"\1\0\2\topen\6'\nclose\6'\1\0\t\15act_as_tab\2\21act_as_shift_tab\1\21enable_backwards\2\vtabkey\n<Tab>\15completion\2\21backwards_tabkey\f<S-Tab>\16default_tab\n<C-t>\21ignore_beginning\2\22default_shift_tab\n<C-d>\nsetup\vtabout\frequire\0", "config", "tabout.nvim")
+
 time([[Sequenced loading]], false)
 
 _G._packer.inside_compile = false

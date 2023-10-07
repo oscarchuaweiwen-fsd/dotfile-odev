@@ -15,7 +15,7 @@ keymap.set("i", "jk", "<ESC>")
 keymap.set("n", "<leader>nh", ":nohl<CR>")
 
 -- delete single character without copying into register
-keymap.set("n", "x", '"_x') -- go to end/start of the line
+keymap.set("n", "x", '"_x') -- delete single alphabet
 keymap.set("n", "gts", "0")
 keymap.set("n", "gte", "%")
 
